@@ -10,6 +10,7 @@ const connection = {
 
 export const queue = new Queue(QUEUE_NAME, { connection });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const worker = new Worker(
   QUEUE_NAME,
   async (job) => {
@@ -23,6 +24,6 @@ const worker = new Worker(
 
 type JobName = 'generateSubmissions';
 
-export const enqueue = async (job: JobName, data?: any) => {
+export const enqueue = async (job: JobName, data?: unknown) => {
   await queue.add(job, data);
 };

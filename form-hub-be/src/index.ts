@@ -1,13 +1,11 @@
-import http from 'http';
-import express from 'express';
-import morgan from 'morgan';
-import { nanoid } from 'nanoid';
-import { PrismaClient } from '@prisma/client';
-import { ApolloServer } from 'apollo-server-express';
 import {
   ApolloServerPluginDrainHttpServer,
   ApolloServerPluginLandingPageLocalDefault,
 } from 'apollo-server-core';
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import http from 'http';
+import morgan from 'morgan';
 import resolvers from './graphql/resolvers';
 import schema from './graphql/schema';
 import db from './modules/db';
@@ -39,7 +37,9 @@ const startApolloServer = async () => {
   await new Promise<void>((resolve) =>
     httpServer.listen({ hostname: '0.0.0.0', port }, resolve)
   );
-  console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
+  console.log(
+    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+  );
 };
 
 startApolloServer();
