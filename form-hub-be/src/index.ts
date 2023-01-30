@@ -4,22 +4,20 @@ import morgan from 'morgan';
 import { nanoid } from 'nanoid';
 
 const db = new PrismaClient({ log: ['error', 'info', 'query', 'warn'] });
-const genId = () => nanoid();
+console.log('🚀 ~ file: index.ts:7 ~ db', db.submission);
+const genId = () => nanoid(16);
 
 const seedDatabase = async () => {
-  if ((await db.post.count()) === 0) {
-    await db.post.createMany({
+  if ((await db.submission.count()) === 0) {
+    await db.submission.createMany({
       data: [
         {
           id: genId(),
-          slug: 'ultimate-node-stack',
-          title: 'Ultimate Node Stack 2022',
-          publishedAt: new Date(),
-        },
-        {
-          id: genId(),
-          slug: 'draft-post',
-          title: 'Draft Post',
+          submittedAt: new Date(),
+          data: {
+            name: 'Emre Yoleri',
+            twitter: 'https://twitter.com//',
+          },
         },
       ],
     });
@@ -31,7 +29,7 @@ const app = express();
 app.use(morgan('dev'));
 
 app.get('/', async (req, res) => {
-  const posts = await db.post.findMany();
+  const posts = await db.submission.findMany();
   res.json(posts);
 });
 
