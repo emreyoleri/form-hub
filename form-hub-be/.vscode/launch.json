@@ -9,15 +9,12 @@
       "port": 9229,
       "restart": true,
       "localRoot": "${workspaceFolder}/src",
-      "remoteRoot": "/usr/src/app/src",
+      "remoteRoot": "/user/src/app/src",
       "sourceMaps": true,
       "sourceMapPathOverrides": {
-        "/usr/src/app/src/*": "${workspaceFolder}/src/*"
+        "/user/src/app/src/*": "${workspaceFolder}/src/*"
       },
-      "skipFiles": [
-        "/usr/src/app/node_modules/**/*.js",
-        "<node_internals>/**"
-      ]
+      "skipFiles": ["/user/src/app/node_modules/**/*.js", "<node_internals>/**"]
     }
   ]
 }
