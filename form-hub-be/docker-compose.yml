@@ -9,6 +9,11 @@ services:
       POSTGRES_DB: webapp_dev
       POSTGRES_HOST_AUTH_METHOD: trust
 
+  redis:
+    image: redis:6.2.5-alpine
+    # networks:
+    #   - form_hub_network
+
   backend:
     build: .
     depends_on:
@@ -23,3 +28,4 @@ services:
     environment:
       DATABASE_URL: postgres://postgres@postgres/webapp_dev
       PORT: 8000
+      REDIS_HOST: redis
